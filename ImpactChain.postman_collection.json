@@ -1,0 +1,243 @@
+{
+  "info": {
+    "name": "ImpactChain / Community Work Tracker API",
+    "_postman_id": "e7b8c143-0000-0000-0000-impactchain",
+    "description": "Postman collection for ImpactChain / Community Work Tracker backend (Express + Sequelize + MySQL).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health - Root",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/",
+          "host": ["{{baseUrl}}"],
+          "path": [""]
+        }
+      }
+    },
+    {
+      "name": "Wallet / User",
+      "item": [
+        {
+          "name": "Connect Wallet",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"walletAddress\": \"0xYOUR_OKX_WALLET_ADDRESS\",\n  \"name\": \"Alice\",\n  \"email\": \"alice@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/connect-wallet",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "connect-wallet"]
+            }
+          }
+        },
+        {
+          "name": "Get Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/dashboard/:walletAddress",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dashboard", ":walletAddress"],
+              "variable": [
+                {
+                  "key": "walletAddress",
+                  "value": "0xYOUR_OKX_WALLET_ADDRESS"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "Get All Tasks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/tasks",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "tasks"]
+            }
+          }
+        },
+        {
+          "name": "Create Task",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Beach Cleanup Drive\",\n  \"description\": \"Collect plastic waste along the coastline and sort recyclables.\",\n  \"reward\": 50,\n  \"requiredVolunteers\": 20\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/tasks",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "tasks"]
+            }
+          }
+        },
+        {
+          "name": "Join Task",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"walletAddress\": \"0xYOUR_OKX_WALLET_ADDRESS\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/tasks/:taskId/join",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "tasks", ":taskId", "join"],
+              "variable": [
+                {
+                  "key": "taskId",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Task By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/tasks/:taskId",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "tasks", ":taskId"],
+              "variable": [
+                {
+                  "key": "taskId",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Leaderboard",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/leaderboard?limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "leaderboard"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Proofs",
+      "item": [
+        {
+          "name": "Submit Proof",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "walletAddress",
+                  "value": "0xYOUR_OKX_WALLET_ADDRESS",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/tasks/:taskId/proof",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "tasks", ":taskId", "proof"],
+              "variable": [
+                {
+                  "key": "taskId",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Verify Proof",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"approve\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/tasks/:taskId/proof/:proofId/verify",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "tasks", ":taskId", "proof", ":proofId", "verify"],
+              "variable": [
+                {
+                  "key": "taskId",
+                  "value": "1"
+                },
+                {
+                  "key": "proofId",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:4000"
+    }
+  ]
+}
+
