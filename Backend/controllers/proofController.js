@@ -79,15 +79,22 @@ exports.verifyProof = async (req, res, next) => {
       proof.user.impactPoints += reward;
       await proof.user.save();
 
-      await blockchainService.mintRewardToken({
+      // Mint reward tokens on blockchain
+      const blockchainResult = await blockchainService.mintRewardToken({
         walletAddress: proof.user.walletAddress,
         taskId: proof.task.id,
         proofId: proof.id,
         amount: reward
       });
+
+      return res.json({ 
+        message: 'Proof verified and reward minted', 
+        proof,
+        blockchain: blockchainResult
+      });
     }
 
-    res.json({ message: 'Proof verified', proof });
+    res.json({ message: 'Proof already verified', proof });
   } catch (err) {
     next(err);
   }
