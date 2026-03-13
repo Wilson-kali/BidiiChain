@@ -1,12 +1,36 @@
 {
-  "name": "backend",
+  "name": "impactchain-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "ImpactChain / Community Work Tracker - Node.js + Express + MySQL + Sequelize backend",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "db:migrate": "sequelize db:migrate",
+    "db:migrate:undo": "sequelize db:migrate:undo",
+    "db:seed": "sequelize db:seed:all"
   },
-  "keywords": [],
+  "keywords": [
+    "impact",
+    "community",
+    "express",
+    "sequelize",
+    "mysql",
+    "web3"
+  },
   "author": "",
-  "license": "ISC",
-  "description": ""
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "helmet": "^7.0.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.11.0",
+    "sequelize": "^6.37.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "sequelize-cli": "^6.6.2"
+  }
 }
