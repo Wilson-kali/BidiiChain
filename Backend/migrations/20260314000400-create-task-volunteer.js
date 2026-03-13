@@ -2,35 +2,32 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Tasks', {
+    await queryInterface.createTable('TaskVolunteers', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      title: {
+      taskId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Tasks',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+      userId: {
         type: Sequelize.STRING,
-        allowNull: false
-      },
-      description: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      reward: {
-        type: Sequelize.INTEGER,
         allowNull: false,
-        defaultValue: 0
-      },
-      requiredVolunteers: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        defaultValue: 1
-      },
-      completed: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
+        references: {
+          model: 'Users',
+          key: 'walletAddress'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,
@@ -48,7 +45,7 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.dropTable('Tasks');
+    await queryInterface.dropTable('TaskVolunteers');
   }
 };
 

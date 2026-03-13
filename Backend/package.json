@@ -1,7 +1,7 @@
 {
-  "name": "impactchain-backend",
+  "name": "bidiichain-backend",
   "version": "1.0.0",
-  "description": "ImpactChain / Community Work Tracker - Node.js + Express + MySQL + Sequelize backend",
+  "description": "BidiiChain / Community Work Tracker - Node.js + Express + MySQL + Sequelize backend",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -11,23 +11,23 @@
     "db:seed": "sequelize db:seed:all"
   },
   "keywords": [
-    "impact",
+    "bidii",
     "community",
     "express",
     "sequelize",
     "mysql",
     "web3"
-  },
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "helmet": "^7.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.1",
+    "helmet": "^7.2.0",
     "multer": "^1.4.5-lts.1",
-    "mysql2": "^3.11.0",
-    "sequelize": "^6.37.3"
+    "mysql2": "^3.19.1",
+    "sequelize": "^6.37.8"
   },
   "devDependencies": {
     "nodemon": "^3.1.0",

@@ -2,46 +2,35 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Proofs', {
+    await queryInterface.createTable('Tasks', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      taskId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Tasks',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
-      },
-      userId: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        references: {
-          model: 'Users',
-          key: 'walletAddress'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
-      },
-      ipfsHash: {
+      title: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      verified: {
+      description: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
+      reward: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0
+      },
+      requiredVolunteers: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 1
+      },
+      completed: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: false
-      },
-      submittedAt: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.NOW
       },
       createdAt: {
         allowNull: false,
@@ -59,7 +48,6 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.dropTable('Proofs');
+    await queryInterface.dropTable('Tasks');
   }
 };
-

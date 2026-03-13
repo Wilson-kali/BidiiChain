@@ -5,8 +5,8 @@ module.exports = {
     await queryInterface.createTable('Users', {
       walletAddress: {
         type: Sequelize.STRING,
-        allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        allowNull: false
       },
       name: {
         type: Sequelize.STRING,
@@ -40,4 +40,3 @@ module.exports = {
     await queryInterface.dropTable('Users');
   }
 };
-
